@@ -1,10 +1,10 @@
-# 002_Unknown
+# 002_Wallets
 
 - opens up about Ethereum
 - talks about wallets briefly
 
 
-## Wallets
+## More About Wallets
 
 - go ahead and install a browser wallet (ideally metamask if you want to follow along best)
 
