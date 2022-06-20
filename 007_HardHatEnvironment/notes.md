@@ -219,4 +219,42 @@
             > ** just remember, bigger entities will definitely go over and above to protect this stuff, so don't feel odd if your strategy isn't listed anywhere or is kind of abstract -- at the moment I'm thinking you would never have private keys on a development project, but if you did, you would want them encrypted on whatever server you were running and a method to pull them out that couldn't be reversed engineered using sha/aes to make sure only malicious parties actually working at the company could access them**
             
             > ** OBVIOUSLY IN THEORY, this can be ultra-complex, but really shouldn't be too much of a problem until you get to a larger scale where you have a trust hierarchy of people...at a local level, feel free to write an encryption password on a sheet of paper or something so long as you take steps to actually back that up safely (steel plate or several encrypted usbs or whatever) -- alright rant over :)
+            
+            
+## Alchemy
+
+- we could run our own node to connect to blockchain, but instead we are going to use [Alchemy](https://alchemy.com)
+
+    - `Alchemy` is a `NaaS` or `Node as a Service`
     
+    - Once you have a probject, you can click to view the keys to it...all we need for this project is the `API KEY` and `HTTPS`
+    
+        - ![API KEY AND HTTPS](./notes_data/003.png)
+        
+    - next we need to go to something like metamask (a web3 wallet) and grab a private key to actually use with this
+    
+    - to continue with the tutorial, the account will need actual money
+    
+    - we attempt to publish here using our metamask with the rinkeby eth and our node on alchemy AND you can now see the code on [rinkeby etherscan](https://rinkeby.etherscan.io/verifyContract?a=0x611caefa3aa7c3e176f4f94b32cc420382a3ebdb)
+    
+    
+    ### Verifing & Publishing Your Contract Source Code
+    
+    - a cool feature of [etherscan.io](https://etherscan.io) is that you can upload your source code and etherscan can compare the compiled version of the code you submitted to the compiled code on the blockchain, if they match, etherscan will publish that information and the source code so more users trust the contract you created for what it does
+    
+        - ![etherscan contract verification](./notes_data/004.png)
+        
+    - now when you go to the [contract](https://rinkeby.etherscan.io/address/0x611caefa3aa7c3e176f4f94b32cc420382a3ebdb#code), you can see that we have verified this source code and now anybody thinking about interacting can go ahead and ensure that they want to by double checking our source code for red flags
+    
+    
+    ### Mempool
+    
+    - the mempool is like a waiting room of a node for a transaction to clear 
+    
+    - developers must use nodes (like `alchemy` or another RPC provider/NaaS) to make requests to the blockchain
+    
+    - each node contains a copy of the blockchain state AND a local memory of transaction data (mempool)
+    
+    - when you see on `alchemy` in the mempool tab that a transaction is pending, you will also see it pending in `metamask`; same for complete and failed
+    
+    - if something is stuck in pending, you can get more information as to why in this tab, it could be because you didn't include enough gas or that some data was missing
