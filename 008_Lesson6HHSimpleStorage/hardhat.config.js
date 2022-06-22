@@ -30,6 +30,10 @@ module.exports = {
 		apiKey: process.env.ETHERSCAN_API_KEY,
 	},
 	networks: {
+		localhost: {
+			url: "http://127.0.0.1:8545",
+			chainId: 31337,
+		},
 		rinkeby: {
 			url: process.env.RINKEBY_RPC_URL,
 			accounts: [process.env.PRIVATE_KEY_1],

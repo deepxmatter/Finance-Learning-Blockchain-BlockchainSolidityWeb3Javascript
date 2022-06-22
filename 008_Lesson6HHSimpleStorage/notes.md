@@ -243,4 +243,46 @@
         
     ## HardHat Local Node
     
+    - if you open a new `bash`, you can run `npx hardhat node` which will spin up a local blockchain node, which is different then the default hardhat network, becuase it actually saves information (it doesn't just restart at block 0 when the script ends)
+    
+    - to define this, you actually need to add a new netowrk in `hardhat.config.js` like so:
+        ```ts
+        module.exports = {
+            solidity: "0.8.8",
+            defaultNetwork: "hardhat",
+            etherscan: {
+                apiKey: process.env.ETHERSCAN_API_KEY,
+            },
+            networks: {
+                localhost: {
+                    url: "http://127.0.0.1:8545",
+                    chainId: 31337,
+                },
+                rinkeby: {
+                    url: process.env.RINKEBY_RPC_URL,
+                    accounts: [process.env.PRIVATE_KEY_1],
+                    chainId: 4,
+                },
+            },
+        };
+        ```
+        
+        - as you can see you don't need an `accounts` array
+        
+        - now when calling this `--network`, you **MUST** have the `npx hardhat node` running in another `bash window` otherwise it won't be able to find the host
+        
+    <br>
+    
+    ## Hardhat Console
+    
+    - we can jump into the hardhat console with `npx hardhat console --network <network>`
+    
+    - this is just like any other console (python >>> or js) but with hardhat enabled
+    
+    <br>
+    
+    ## Tests
+    
+    > really important with code that costs money to re-publish **AND** can cause major financial losses if bugs exist
+    
     - 

@@ -4,8 +4,10 @@
 	"description": "lesson 6 of https://www.youtube.com/watch?v=gyMwXuJrbJQ",
 	"main": "main.js",
 	"scripts": {
+		"hh": "npx hardhat",
 		"clean": "rm -rf ./artifacts && rm -rf ./cache",
-		"deployHH": "npx hardhat run ./scripts/deploy.js --network hardhat",
+		"deployD": "npx hardhat run ./scripts/deploy.js --network hardhat",
+		"deployL": "npx hardhat run ./scripts/deploy.js --network localhost",
 		"deployR": "npx hardhat run ./scripts/deploy.js --network rinkeby"
 	},
 	"author": "DeepMatter",
