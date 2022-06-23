@@ -5,7 +5,7 @@
 	"main": "main.js",
 	"scripts": {
 		"hh": "npx hardhat",
-		"clean": "rm -rf ./artifacts && rm -rf ./cache",
+		"clean": "rm -rf ./artifacts && rm -rf ./cache && rm -rf ./tmp",
 		"deployD": "npx hardhat run ./scripts/deploy.js --network hardhat",
 		"deployL": "npx hardhat run ./scripts/deploy.js --network localhost",
 		"deployR": "npx hardhat run ./scripts/deploy.js --network rinkeby"
@@ -23,7 +23,9 @@
 	},
 	"dependencies": {
 		"dotenv": "^16.0.1",
+		"hardhat-gas-reporter": "^1.0.8",
 		"prettier": "^2.7.1",
-		"prettier-plugin-solidity": "^1.0.0-beta.19"
+		"prettier-plugin-solidity": "^1.0.0-beta.19",
+		"solidity-coverage": "^0.7.21"
 	}
 }

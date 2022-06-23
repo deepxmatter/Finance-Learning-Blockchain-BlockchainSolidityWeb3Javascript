@@ -285,4 +285,92 @@
     
     > really important with code that costs money to re-publish **AND** can cause major financial losses if bugs exist
     
-    - 
+    - HardHat uses `mocha.js` to run tests
+    
+    - to use the two keywords `assert` or `expect` we need the package `chai` to be added as our assertion library
+        - fortunately `chai` comes with HardHat so we just need to add `const { assert, expect } = require("chai");` to the top of our test file
+        
+    - our first test looks like this:
+        ```ts
+        const { ethers } = require("hardhat");
+        const { assert, expect } = require("chai");
+
+        describe("SimpleStorage", () => {
+            let simpleStorageFactory;
+            let simpleStorage;
+
+            beforeEach(async () => {
+                simpleStorageFactory = await ethers.getContractFactory("SimpleStorage");
+                simpleStorage = await simpleStorageFactory.deploy();
+            });
+
+            it("should start with a favorite number of 0", async () => {
+                const currentValue = await simpleStorage.retrieve();
+                const expectedValue = "0";
+
+                assert.equal(currentValue.toString(), expectedValue);
+            });
+        });
+        ```
+        
+        - to run it just type `npx hardhat test>` and you should see something like this:
+            
+            - ![mocha test](./notes_data/002.png) 
+            
+        - to get just a single test use `npx hardhat test --grep <it descriptor>`
+        
+    <br>
+    
+    ## More Extensions
+    
+    - adding a few more extensions here to the project:
+    
+        ### Hardhat Gas Reporter
+    
+        - this extension tells us roughly how much gas each function uses, to use it, we need to npm install it, then add it to our `hardhat.config.js`, we first require it at the top with `require("hardhat-gas-reporter");`, then add it to our `module.exports` section:
+            ```ts
+            module.exports = {
+                solidity: "0.8.8",
+                defaultNetwork: "hardhat",
+                etherscan: {
+                    apiKey: process.env.ETHERSCAN_API_KEY,
+                },
+                networks: {
+                    localhost: {
+                        url: "http://127.0.0.1:8545",
+                        chainId: 31337,
+                    },
+                    rinkeby: {
+                        url: process.env.RINKEBY_RPC_URL,
+                        accounts: [process.env.PRIVATE_KEY_1],
+                        chainId: 4,
+                    },
+                },
+                gasReporter: {
+                enabled: true,
+                outputFile: "./tmp/GasReport.txt",
+                noColors: true,
+                currency: "USD",
+                coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+                },
+            };
+            ```
+            
+            - then we get this when we run `npx hardhat test`:
+            
+                - ![gas reporter](./notes_data/003.png)
+                
+        ### Solidity Coverage
+        
+        - added with `npm i -d solidity-coverage`
+        
+        - this script basically tells us where in solidity we should maybe be running tests
+        
+        
+        ### Hardhat Waffle
+        
+        - built into hardhat
+        
+        - helps with testing
+        
+        

@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
+require("hardhat-gas-reporter");
+require("solidity-coverage");
 
 if (process.env.NODE_ENV !== "PROD") {
 	require("dotenv").config();
@@ -39,5 +41,12 @@ module.exports = {
 			accounts: [process.env.PRIVATE_KEY_1],
 			chainId: 4,
 		},
+	},
+	gasReporter: {
+		enabled: false,
+		outputFile: "./tmp/GasReport.txt",
+		noColors: true,
+		currency: "USD",
+		coinmarketcap: process.env.COINMARKETCAP_API_KEY,
 	},
 };
