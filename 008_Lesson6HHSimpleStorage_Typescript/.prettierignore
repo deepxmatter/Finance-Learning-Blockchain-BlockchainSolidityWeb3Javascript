@@ -1,0 +1,12 @@
+notes_data
+notes.md
+node_modules
+img
+artifacts
+cache
+coverage
+.env
+.*
+README.md
+notes.md
+coverage.json
