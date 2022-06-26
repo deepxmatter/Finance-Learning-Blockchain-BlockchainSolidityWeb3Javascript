@@ -14,3 +14,7 @@ tmp
 #SolidityCoverage
 coverage
 coverage.json
+
+#Typescript
+typechain
+typechain-types
