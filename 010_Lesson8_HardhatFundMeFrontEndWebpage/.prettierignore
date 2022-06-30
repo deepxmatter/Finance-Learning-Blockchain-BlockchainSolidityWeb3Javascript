@@ -1,0 +1,14 @@
+node_modules
+artifacts
+cache
+coverage*
+gasReporterOutput.json
+*.md
+tsconfig.json
+package.json
+package-lock.json
+.env
+.env.exmaple
+.gitignore
+hardhat.config.ts
+typechain

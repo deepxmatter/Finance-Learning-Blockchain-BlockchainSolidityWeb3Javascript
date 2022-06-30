@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>WalletConnect</title>
+	</head>
+	<body>
+		<p>example of connecting to a web3 wallet...</p>
+		<br />
+		<script type="text/javascript">
+			const connect = async () => {
+				if (typeof window.ethereum !== "undefined") {
+					await window.ethereum.request({
+						method: "eth_requestAccounts",
+					});
+				} else {
+					document.getElementById("connectButton").innerHTML =
+						"no ethereum browser detected...";
+				}
+			};
+		</script>
+		<button id="connectButton" onclick="connect()">Connect...</button>
+	</body>
+</html>
