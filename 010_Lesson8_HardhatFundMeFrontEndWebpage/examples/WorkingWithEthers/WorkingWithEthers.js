@@ -7,7 +7,14 @@ const fundButton = document.getElementById("fundButton");
 
 const listenTX = (transactionResponse, provider) => {
 	console.log(`Mining ${transactionResponse.hash}...`);
-	return new Promise();
+	return new Promise((resolve, reject) => {
+		provider.once(transactionResponse.hash, (transactionReceipt) => {
+			console.log(
+				`completed with ${transactionReceipt.confirmations} confirmations`
+			);
+			resolve();
+		});
+	});
 };
 
 const connect = async () => {
@@ -33,6 +40,8 @@ const fund = async () => {
 			const transactionResponse = await contract.fund({
 				value: ethers.utils.parseEther(ethAmount),
 			});
+			await listenTX(transactionResponse, provider);
+			console.log("done...");
 		} catch (err) {
 			console.error(err);
 		}

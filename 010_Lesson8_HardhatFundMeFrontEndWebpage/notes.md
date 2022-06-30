@@ -222,3 +222,44 @@
             2. listen for an event to be emitted
             
         - lets do the first one first with a new method called `listenTX()`
+        
+    ## Flow of Static Pages
+    
+    - so basically when working statically with Ethereum and Ethers.js the flow is pretty simple:
+    
+        1. create a webpage
+        2. create a main js file
+        3. import the js file into the html
+        4. import ethers.js in the the js file
+        5. wrap the provider around the wallet source (i.e. window.ethereum in this example)
+        6. create a button that calls a function in the js file
+        7. create a contract object so you can interact with your contract, which requires
+            - an address
+            - an abi
+            - a signer
+                - signer you just get with `provider.getSigner()` which comes from metamask (or whatever
+                provider you are using)
+                - abi is just copied over from your compiled contract that should match a published contract
+                - contract address is whichever actualy contract your want to interact with
+                
+        - you can now pretty much do any interaction with your wallet and the contract by just creating functions...
+        
+            - e.g. if you wanted to use the withdrawl method on your contract:
+            
+                ```js
+                async function withdraw() {
+                    if (typeof window.ethereum !== 'undefined') { // check if metamask is working
+                        const provider = new ethers.providers.Web3Provider(window.ethereum); // wrap ethers around metamask
+                        const signer = provider.getSigner(); // get signer from provider (aka metamask)
+                        const contract = new ethers.Contract(contractAddress, abi, signer); // create contract object
+                        try {
+                            const transactionResponse = await contract.withdraw(); // call withdraw method of contract
+                            console.log(transactionResponse); // log transaction response
+                        } catch (error) {
+                            console.log(error); // log error
+                        }
+                    }
+                }
+                ```
+                
+    - basically the rest is just front end design and js logic, pretty straightforward
