@@ -271,6 +271,8 @@
         
         - now when calling this `--network`, you **MUST** have the `npx hardhat node` running in another `bash window` otherwise it won't be able to find the host
         
+        - 
+        
     <br>
     
     ## Hardhat Console
@@ -372,3 +374,5 @@
         - built into hardhat
         
         - helps with testing
+        
+        
